@@ -5,9 +5,6 @@ Created on Wed Jul 15 16:41:20 2020
 @author: acfba
 """
 
-image_size = 299
-
-
 from mittens import Mittens
 from mittens import GloVe
 
