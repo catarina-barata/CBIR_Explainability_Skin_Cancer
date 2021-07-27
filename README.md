@@ -11,7 +11,7 @@ Python >= 3.6
 
 Scikit-learn
 
-This code uses functions form tf.slim.
+Tf_slim
 
 ## Usage
 1) Download the dataset tf recorders from **https://tinyurl.com/yd65v34z** and add to the **data** folder or create your own tf records and add them to the **same** folder
