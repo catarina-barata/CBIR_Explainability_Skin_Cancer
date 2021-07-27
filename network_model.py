@@ -15,7 +15,7 @@ import triplet_semi
 
 
 def apply_network_img(network,image_size):
-    if network == 'dense121':
+    if network == 'densenet121':
         base_model = K.applications.DenseNet121(include_top=False,
                                                 weights="imagenet",
                                                 pooling=None)
@@ -23,7 +23,7 @@ def apply_network_img(network,image_size):
         cnn_input = K.Input(shape=(image_size, image_size, 3), name='img_cnn')
         x = K.applications.densenet.preprocess_input(cnn_input)
     
-    elif network == 'dense169':
+    elif network == 'densenet169':
         base_model = K.applications.DenseNet169(include_top=False,
                                                 weights="imagenet",
                                                 pooling=None)
@@ -63,14 +63,14 @@ def apply_network_img(network,image_size):
 
         cnn_input = K.Input(shape=(image_size, image_size, 3), name='img_cnn')
         x = K.applications.resnet_v2.preprocess_input(cnn_input)
-
-    elif network == 'xception':
-        base_model = K.applications.Xception(include_top=False,
-                                             weights="imagenet",
-                                             pooling=None)
+    
+    elif network == 'resnet101':
+        base_model = K.applications.ResNet50V2(include_top=False,
+                                               weights="imagenet",
+                                               pooling=None)
 
         cnn_input = K.Input(shape=(image_size, image_size, 3), name='img_cnn')
-        x = K.applications.xception.preprocess_input(cnn_input)
+        x = K.applications.resnet_v2.preprocess_input(cnn_input)
 
     x = base_model(x, training=False)
 
@@ -78,7 +78,7 @@ def apply_network_img(network,image_size):
 
     return K.Model(inputs=cnn_input, outputs=cnn_output, name='CNN')
 
-def apply_attention_decision(train_size, data, captions, n_classes, wordtoix,
+def apply_model(train_size, data, captions, n_classes, wordtoix,
                              image_size,rotate,zoom, network,
                              distillation, Temp,contrastive,LAMBDA_contrast,
                              triplet,LAMBDA,
@@ -109,7 +109,6 @@ def apply_attention_decision(train_size, data, captions, n_classes, wordtoix,
 
         data_net = tf.concat([data, data_mod], axis=0)
 
-        
         return data_net
 
     data = tf.cond(is_training, lambda: self_aug(data), lambda: data)

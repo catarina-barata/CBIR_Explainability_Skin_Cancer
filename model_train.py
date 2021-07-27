@@ -91,7 +91,7 @@ def main(_):
 
             is_training = tf.placeholder(tf.bool,shape=())
 
-            total_loss,class_loss, true, pred, centers,cont_loss, sim_loss, distil_loss,cnn_model = nm.apply_attention_decision(Flags.train_dataset_size, batch_x, text,
+            total_loss,class_loss, true, pred, centers,cont_loss, sim_loss, distil_loss,cnn_model = nm.apply_model(Flags.train_dataset_size, batch_x, text,
                                                                                                                                     n_words, table_words,Flags.image_size,
                                                                                                                                     Flags.rotate,Flags.zoom,Flags.network,
                                                                                                                                     Flags.distillation,Flags.Temp,
@@ -287,19 +287,19 @@ if __name__ == '__main__':
     parser.add_argument(
         '--train_dir',
         type=str,
-        default='model/training_fold1',
+        default='model/training',
         help='Place to save summaries and checkpoints.'
     )
     parser.add_argument(
         '--train_dir_log',
         type=str,
-        default='model/checkpoints_fold1',
+        default='model/checkpoints',
         help='Place to save temporary checkpoints.'
     )
     parser.add_argument(
         '--val_dir',
         type=str,
-        default='model/validation_fold1',
+        default='model/validation',
         help='Place to save summaries and checkpoints.'
         
     )
@@ -312,7 +312,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--train_dataset_size',
         type=int,
-        default=16889,
+        default=8500,
         help='Size of your training dataset.'
     )
     parser.add_argument(
@@ -324,7 +324,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--val_dataset_size',
         type=int,
-        default=8444,
+        default=2500,
         help='Size of your validation dataset.'
     )
     parser.add_argument(
@@ -332,6 +332,73 @@ if __name__ == '__main__':
         type=int,
         default=61,
         help='How many epochs.'
+    
+    )
+    parser.add_argument(
+        '--network',
+        type=str,
+        default='densenet169',
+        help='Pick the CNN backbone - densenet121,densenet169,resnet50,efficientb1,efficientb3,efficientb4,resnet50,or resnet101.'
+    )
+    parser.add_argument(
+        '--rotate',
+        type=bool,
+        default=True,
+        help='Apply rotation-based transformations on the augmented loss.'
+    )
+    parser.add_argument(
+        '--zoom',
+        type=bool,
+        default=True,
+        help='Apply zoom-based transformations on the augmented loss.'
+    )
+    parser.add_argument(
+        '--distillation',
+        type=bool,
+        default=True,
+        help='Whether to use distillation loss to regularize the model.'
+    )
+    parser.add_argument(
+        '--Temp',
+        type=float,
+        default=5.0,
+        help='Temperature value for distillation loss.'
+    )
+    parser.add_argument(
+        '--contrastive',
+        type=bool,
+        default=True,
+        help='Whether to use contrastive loss to regularize the model.'
+    )
+    parser.add_argument(
+        '--LAMBDA_contrast',
+        type=float,
+        default=1.0,
+        help='Weight of the contrastive loss.'
+    )
+    parser.add_argument(
+        '--triplet',
+        type=bool,
+        default=False,
+        help='Whether to use triplet loss to regularize the model.'
+    )
+    parser.add_argument(
+        '--LAMBDA',
+        type=float,
+        default=1.0,
+        help='Weight of the triplet loss.'
+    )
+    parser.add_argument(
+        '--two_headed',
+        type=bool,
+        default=True,
+        help='Whether to use a two-headed model. Set to true when contrastive and/or triplet loss are used.'
+    )
+    parser.add_argument(
+        '--two_head_size',
+        type=int,
+        default=256,
+        help='Size (number of units) of the second head.'
     )
     Flags, unparsed = parser.parse_known_args()
     tf.app.run(main=main)

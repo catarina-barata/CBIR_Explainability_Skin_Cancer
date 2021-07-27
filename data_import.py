@@ -107,9 +107,9 @@ def read_and_decode(dataset, batch_size, is_training, data_size):
 
     return dataset
 
-def transform_data(img, is_training):
+def transform_data(img, is_training, dim):
     image_dense = tf.map_fn(
-        lambda x: inception_preprocessing.preprocess_image(x, image_size, image_size, is_training=is_training, crop=is_training,
+        lambda x: inception_preprocessing.preprocess_image(x, dim, dim, is_training=is_training,
                                                            add_image_summaries=False, fast_mode=False), img,
         dtype=tf.float32)
 
