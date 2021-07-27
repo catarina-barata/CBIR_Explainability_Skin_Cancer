@@ -16,7 +16,7 @@ Tf_slim
 ## Usage
 1) Download the dataset tf recorders from **https://tinyurl.com/yd65v34z** and add to the **data** folder or create your own tf records and add them to the **same** folder
 
-2) Train a hierarchical model using a specific fold, network, attention properties, batch_size, and number of epochs: python  model_train.py --tfrecord_train "data\Fold_1_T3\Training\train_full_norm.tfrecords" --tfrecord_val "data\Fold_1_T3\Validation\val_full_norm.tfrecords" --net "V" --feature_maps 512 --train_batch_size 20 --ratio 2 --how_many_training_steps 150 
+2) Train a model using a specific fold, network, batch_size, and number of epochs: python  model_train.py 
 
 ## Reference
 
