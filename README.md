@@ -24,7 +24,7 @@ Tf_slim
 @inproceedings{barata2021,
   title={Improving the Explainability of Skin Cancer Diagnosis Using CBIR},
   author={Barata, Catarina and Santiago, Carlos},
-  booktitle={Accepted for Publication in },
+  booktitle={Accepted for Publication in MICCAI'21},
   year={2021}
 }
 
