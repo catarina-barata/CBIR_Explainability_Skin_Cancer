@@ -21,11 +21,13 @@ Tf_slim
 ## Reference
 
 ```
-@inproceedings{barata2021,
+@inproceedings{barata2021improving,
   title={Improving the Explainability of Skin Cancer Diagnosis Using CBIR},
-  author={Barata, Catarina and Santiago, Carlos},
-  booktitle={Accepted for Publication in MICCAI'21},
-  year={2021}
+  author={Barata, C. and Santiago, C.},
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={550--559},
+  year={2021},
+  organization={Springer}
 }
 
 
