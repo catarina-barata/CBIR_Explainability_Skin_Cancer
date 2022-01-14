@@ -2,7 +2,7 @@
 A **Tensorflow** implementation of a **CBIR Explainable Model** for the diagnosis of skin lesions.
 **PyTorch** implementation coming soon....
 
-![](./imgs)
+![](./imgs/miccai.png)
 
 ## Requirements
 Tensorflow version >= 2.3
