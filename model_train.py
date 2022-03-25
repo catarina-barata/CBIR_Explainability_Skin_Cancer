@@ -400,5 +400,11 @@ if __name__ == '__main__':
         default=256,
         help='Size (number of units) of the second head.'
     )
+    parser.add_argument(
+        '--image_size',
+        type=int,
+        default=315,
+        help='Size of input image'
+    )
     Flags, unparsed = parser.parse_known_args()
     tf.app.run(main=main)
